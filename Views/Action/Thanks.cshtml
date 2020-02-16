@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Thanks";
+    string title = "", platform = "", releaseDate = "";
+
+    bool listGames = true;
+
+    string[] gameTitles = new string[] { "Halo Master Chief Collection", "Blazblue", "Super Smash Brother Ultimate", "Risk of Rain 2" };
+    string[] gamePlatforms = new string[] { "PC/XBOX ONE", "PS3/XBOX 360", "Nintendo Switch", "PC" };
+    string[] gameReleaseDates = new string[] { "November 11, 2014", "November 19, 2008", "December 7, 2018", "March 28, 2019" };
+
+    if (IsPost)
+    {
+        title = Request.Form["Title"];
+        platform = Request.Form["Platform"];
+        releaseDate = Request.Form["ReleaseDate"];
+    }
+}
+
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Thanks for your submition.</title>
+    </head>
+    <body>
+        <form action="" method="post">
+            <p/>
+            <h1>Thanks for submitting your answer!</h1>
+            <p/>
+            It looks like you've requested the game "@title". <br/>
+            On the platform "@platform". <br />
+            Which was released "@releaseDate".
+            <br/>
+            <p><h2>Here are a collection of games I like.</h2></p>
+            @{
+                if (listGames)
+                {
+                    for (int i = 0; i < gameTitles.Length; i++)
+                    {
+                        <h3>@gameTitles[i]</h3>
+                        @gamePlatforms[i] <br/>
+                        @gameReleaseDates[i] <br/>
+                        switch (gameTitles[i]) {
+                            case "Blazblue":
+                                    <p>This is probably my favorite on the list.</p>
+                                break;
+                            case "Risk of Rain 2":
+                                    <p>I enjoy playing this game with friends..</p>
+                                break;
+                            case "Halo Master Chief Collection":
+                                <p>I've enjoyed these games for years.</p>
+                                break;
+                            default:
+                                <p>Just a fantastic game.</p>
+                                break;
+                        }
+                    }
+                }
+            }
+        </form>
+    </body>
+    </html>
+

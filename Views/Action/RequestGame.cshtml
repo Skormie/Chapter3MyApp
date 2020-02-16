@@ -1,0 +1,35 @@
+﻿@model Chapter2MyApp.Models.RequestGameModel
+
+@{
+    ViewBag.Title = "RequestGame";
+}
+
+    <img src="~/Content/r67xj0lo.bmp" alt="Games" />
+
+<h2>RequestGame</h2>
+
+@using (Html.BeginForm("Thanks", "Action", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
+    @Html.LabelFor(m => m.Title)<br/>
+    @Html.EditorFor(m => m.Title) @Html.ValidationMessageFor(m => m.Title)<br />
+    <p/>
+    @Html.LabelFor(m => m.Platform)<br/>
+    @Html.DropDownListFor(m => m.Platform, new List<SelectListItem> {
+        new SelectListItem{Text="PS1", Value="PS1"},
+        new SelectListItem{Text="PS2", Value="PS2"},
+        new SelectListItem{Text="PS3", Value="PS3"},
+        new SelectListItem{Text="PS4", Value="PS4"},
+        new SelectListItem{Text="NES", Value="NES"},
+        new SelectListItem{Text="SNES", Value="SNES"},
+        new SelectListItem{Text="XBOX", Value="XBOX"},
+        new SelectListItem{Text="GAMEMAN", Value="GAMEMAN"}
+    }
+    , "Please select") @Html.ValidationMessageFor(m => m.Platform)<br />
+    <p/>
+    @Html.LabelFor(m => m.ReleaseDate)<br/>
+    @Html.EditorFor(m => m.ReleaseDate) @Html.ValidationMessageFor(m => m.ReleaseDate)<br />
+    <p/>
+    <input type="submit" name="Submit Game" />
+}
